@@ -12,7 +12,7 @@ public class JwtUtils {
     public static int expire = 6000000;
     public static String secret = "Abumuslim1998Amonov98Bahriddinovich";
 
-    public static Date getExpireDateForAccesToken() {
+    public static Date getExpireDateForAccessToken() {
         return new Date(expire + System.currentTimeMillis());
     }
 
