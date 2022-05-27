@@ -8,6 +8,7 @@ import lombok.ToString;
 import org.hibernate.Hibernate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import java.util.Objects;
@@ -20,6 +21,7 @@ import java.util.Objects;
 @Entity
 public class Category extends AbstractEntity<Long>{
 
+    @Column(nullable = false)
     private String name;
 
     @Override

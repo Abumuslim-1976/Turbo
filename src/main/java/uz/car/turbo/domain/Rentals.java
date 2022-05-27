@@ -17,8 +17,8 @@ import java.util.Objects;
 @Setter
 @ToString
 @RequiredArgsConstructor
-@EntityListeners(AuditingEntityListener.class)
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 public class Rentals extends AbstractEntity<Long> {
 
     @Column(nullable = false)
