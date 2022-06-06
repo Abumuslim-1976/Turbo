@@ -1,17 +1,16 @@
 package uz.car.turbo.dto;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Builder
 public class SessionDto {
-    private String accessToken;
-    private String refreshToken;
+    private String sessionToken;
     private String tokenType;
-    private Long issuedAt;
+    private String refreshToken;
     private Long expiresIn;
-    private Long refreshTokenExpire;
+    private String scope;
 }
