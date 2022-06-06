@@ -2,15 +2,25 @@ package uz.car.turbo.jwt;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Component;
 
+import javax.servlet.*;
+import java.io.IOException;
 import java.util.Date;
 
 @Component
-public class JwtTokenProvider {
+public class JwtTokenProvider extends UsernamePasswordAuthenticationFilter {
 
     private static final long expireTime = 1000 * 60 * 60 * 24;
     private static final String secretKey = "!@#_Abumuslim_$%^";
+
+    private final AuthenticationManager authenticationManager;
+
+    public JwtTokenProvider(AuthenticationManager authenticationManager) {
+        this.authenticationManager = authenticationManager;
+    }
 
     public String generateToken(String username) {
         Date expireDate = new Date(System.currentTimeMillis() + expireTime);
@@ -34,6 +44,10 @@ public class JwtTokenProvider {
         } catch (Exception e) {
             return null;
         }
+    }
+
+    public AuthenticationManager getAuthenticationManager() {
+        return authenticationManager;
     }
 
 }

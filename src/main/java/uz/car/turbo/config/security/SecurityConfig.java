@@ -17,8 +17,10 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import uz.car.turbo.jwt.JwtTokenFilter;
+import uz.car.turbo.jwt.JwtTokenProvider;
 import uz.car.turbo.service.UserService;
 
+import javax.servlet.Filter;
 import java.util.Arrays;
 
 @Configuration
@@ -27,6 +29,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     JwtTokenFilter jwtTokenFilter;
+    @Autowired
+    JwtTokenProvider jwtTokenProvider;
     @Autowired
     UserService userService;
     @Autowired
@@ -47,6 +51,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .httpBasic().disable();
         http
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        http
+                .addFilter(new JwtTokenProvider(authenticationManagerBean()));
         http
                 .addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
     }
