@@ -8,9 +8,10 @@ import lombok.Data;
 @NoArgsConstructor
 @Builder
 public class SessionDto {
-    private String sessionToken;
+    private String accessToken;
     private String tokenType;
     private String refreshToken;
+    private Long refreshTokenExpire;
     private Long expiresIn;
-    private String scope;
+    private Long issuedAt;
 }

@@ -2,36 +2,29 @@ package uz.car.turbo.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import javassist.NotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.apache.http.HttpHeaders;
 import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.InputStreamEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.WebRequest;
 import uz.car.turbo.config.swagger.ApiProperties;
-import uz.car.turbo.dto.*;
+import uz.car.turbo.dto.ApiError;
+import uz.car.turbo.dto.AuthUserDto;
+import uz.car.turbo.dto.Data;
+import uz.car.turbo.dto.SessionDto;
 import uz.car.turbo.repository.UserRepository;
 
-import javax.servlet.http.HttpServletRequest;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor

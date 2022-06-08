@@ -20,7 +20,6 @@ import uz.car.turbo.jwt.JwtTokenFilter;
 import uz.car.turbo.jwt.JwtTokenProvider;
 import uz.car.turbo.service.UserService;
 
-import javax.servlet.Filter;
 import java.util.Arrays;
 
 @Configuration
@@ -74,7 +73,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return super.authenticationManagerBean();
     }
 
-    // todo WARNING
+    //todo WARNING
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
