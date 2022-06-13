@@ -1,9 +1,6 @@
 package uz.car.turbo.domain;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.Hibernate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.security.core.GrantedAuthority;
@@ -14,20 +11,23 @@ import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import java.util.Collection;
 import java.util.Objects;
+import java.util.UUID;
 
 @Getter
 @Setter
 @ToString
+@AllArgsConstructor
+@NoArgsConstructor
 @RequiredArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 @Entity(name = "users")
-public class User extends AbstractEntity<Long> implements UserDetails {
+public class User extends AbstractEntity<UUID> implements UserDetails {
 
     @Column(nullable = false)
-    private String fullName;
+    private String firstName;
 
-    @Column(unique = true, nullable = false)
-    private String username;
+    @Column(nullable = false)
+    private String lastName;
 
     @Column(unique = true, nullable = false)
     private String phoneNumber;
@@ -70,6 +70,12 @@ public class User extends AbstractEntity<Long> implements UserDetails {
     @Override
     public boolean isEnabled() {
         return this.enabled;
+    }
+
+    public User(String firstName, String lastName, String phoneNumber) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
     }
 
     @Override

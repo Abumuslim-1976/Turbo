@@ -1,4 +1,4 @@
-package uz.car.turbo.config.auditing;
+package uz.car.turbo.auditing;
 
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.security.core.Authentication;

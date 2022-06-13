@@ -7,13 +7,14 @@ import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
 
@@ -26,8 +27,10 @@ import java.util.Objects;
 public abstract class AbstractEntity<T> {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(generator = "uuid2")
+    @Type(type = "org.hibernate.type.PostgresUUIDType")
+    @GenericGenerator(name = "uuid2",strategy = "org.hibernate.id.UUIDGenerator")
+    private T id;
 
     @CreationTimestamp
     @Column(updatable = false)
